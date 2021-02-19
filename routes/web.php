@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +36,10 @@ Route::post('admin/password/reset', [App\Http\Controllers\Auth\ResetPasswordCont
 Route::get('admin/password/reset/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('admin.password.reset');
 Route::get('admin/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('admin.register');
 Route::post('admin/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('admin.register');
+
+Route::get('bcrypt',function(){
+    // return bcrypt('hmoAdmin$1');
+    return Hash::make('hmoAdmin$1',[
+        'rounds'=>10,
+    ]);
+});
